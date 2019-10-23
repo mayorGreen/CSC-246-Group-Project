@@ -1,0 +1,9 @@
+{
+  "name": "group-console-app",
+  "version": "0.0.0",
+  "description": "GroupConsoleApp",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  }
+}
