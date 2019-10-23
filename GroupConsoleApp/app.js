@@ -8,11 +8,11 @@ const rl = readline.createInterface({
 });
 
 
-rl.question('Is the check to be split (yes/no)) ', (answer) => {
+rl.question('Is the check to be split (yes/no)) ', (answer1) => {
     // TODO: Log the answer in a database
-    console.log(answer);
+    console.log(answer1);
  
-    if (answer.toLowerCase() == 'yes' || answer.toLowerCase() == 'y') {
+    if (answer1.toLowerCase() == 'yes' || answer1.toLowerCase() == 'y') {
         rl.question('How many diners are there? (give a numerical value) ', (numDiners) => {
             // TODO: Log the answer in a database
             console.log(`Received: ${numDiners}`);
@@ -22,24 +22,52 @@ rl.question('Is the check to be split (yes/no)) ', (answer) => {
                 console.log(`Received: ${totalBill}`);
 
                 var splitBill = totalBill / numDiners;
-                console.log('The split bill is ' + splitBill.toFixed(2) + ' between ' + numDiners + 'diners.');
+                console.log('The split bill is ' + splitBill.toFixed(2) + ' between ' + numDiners + ' diners.');
 
+                rl.question('Will you be leaving a tip (yes/no)) ', (answer2) => {
+                    // TODO: Log the answer in a database
+                    console.log(answer2);
 
+                    if (answer2.toLowerCase() == 'yes' || answer2.toLowerCase() == 'y') {
+                        rl.question('What percent tip would you like to leave? (type 10, 20, 30) ', (tipAmount) => {
+                            // TODO: Log the answer in a database
+                            console.log(`Received: ${tipAmount}`);
+                            console.log('Each person owes a $' + (splitBill * (tipAmount / 100).toFixed(2)) + ' tip each or one person owes $' + (totalBill * (tipAmount / 100)).toFixed(2) + ' total tip.');
+                        });
+
+                    } else if (answer2.toLowerCase() == 'no' || answer2.toLowerCase() == 'n') {
+                        console.log('Alright cheapskate, thanks for dining')
+                    } else {
+                        console.log('Did you even eat here?');
+                    }
+                });
+            });
+        });
+    } else if (answer1.toLowerCase() == 'no' || answer1.toLowerCase() == 'n') {
+        rl.question('What was the total bill? (give a numerical value with 2 decimals) ', (totalBill) => {
+            // TODO: Log the answer in a database
+            console.log(`Received: ${totalBill}`);
+
+            rl.question('Do you want to tip (yes/no) ', (response) => {
+                console.log(`Recieved: ${response}`)
+
+                if (response.toLowerCase() == 'yes' || response.toLowerCase() == 'y') {
+                    rl.question('What percent tip would you like to leave? (type 10, 20, 30) ', (tipAmount) => {
+                        // TODO: Log the answer in a database
+                        console.log(`Received: ${tipAmount}`);
+                        console.log('You owe $' + ((tipAmount / 100) * totalBill) + ' in tip.');
+                    });
+
+                } else if (response.toLowerCase() == 'no' || response.toLowerCase() == 'n') {
+                    console.log('Alright cheapskate, thanks for dining')
+                } else {
+                    console.log('Did you even eat here?');
+                }
             });
         });
     } else {
-        if (answer.toLowerCase() == 'no' || answer.toLowerCase() == 'n') {
-            rl.question('What was the total bill? (give a numerical value with 2 decimals) ', (totalBill) => {
-                // TODO: Log the answer in a database
-                console.log(`Received: ${totalBill}`);
-
-                rl.question('Do you want to tip (yes/no) ', (response) => { console.log(`Recieved: ${response}`) });
-            });
-        }
-        else {
             (console.log('Did you even eat here?'))
         };
-    };
 });
 
 
