@@ -32,14 +32,17 @@ rl.question('Is the check to be split (yes/no)) ', (answer1) => {
                         rl.question('What percent tip would you like to leave? (type 10, 20, 30) ', (tipAmount) => {
                             // TODO: Log the answer in a database
                             console.log(`Received: ${tipAmount}`);
-                            console.log('Each person owes a $' + (splitBill * (tipAmount / 100).toFixed(2)) + ' tip each or one person owes $' + (totalBill * (tipAmount / 100)).toFixed(2) + ' total tip.');
+                            if (tipAmount == '10' || tipAmount == '20' || tipAmount == '30') {
+                                console.log('Each person owes a $' + (splitBill * (tipAmount / 100)).toFixed(2) + ' tip each or one person owes $' + (totalBill * (tipAmount / 100)).toFixed(2) + ' total tip.');
+                            } else { console.log('Stop wasting our time>') };
+                            
                         });
 
                     } else if (answer2.toLowerCase() == 'no' || answer2.toLowerCase() == 'n') {
                         console.log('Alright cheapskate, thanks for dining')
                     } else {
                         console.log('Did you even eat here?');
-                    }
+                    };
                 });
             });
         });
@@ -55,14 +58,16 @@ rl.question('Is the check to be split (yes/no)) ', (answer1) => {
                     rl.question('What percent tip would you like to leave? (type 10, 20, 30) ', (tipAmount) => {
                         // TODO: Log the answer in a database
                         console.log(`Received: ${tipAmount}`);
-                        console.log('You owe $' + ((tipAmount / 100) * totalBill) + ' in tip.');
+                        if (tipAmount == '10' || tipAmount == '20' || tipAmount == '30') {
+                            console.log('You owe $' + (totalBill * (tipAmount / 100)).toFixed(2) + ' in tip.');
+                        } else { console.log('Stop wasting our time>') };
                     });
 
                 } else if (response.toLowerCase() == 'no' || response.toLowerCase() == 'n') {
                     console.log('Alright cheapskate, thanks for dining')
                 } else {
                     console.log('Did you even eat here?');
-                }
+                };
             });
         });
     } else {
