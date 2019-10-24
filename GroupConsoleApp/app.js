@@ -34,7 +34,7 @@ rl.question('Is the check to be split (yes/no)) ', (answer1) => {
                             console.log(`Received: ${tipAmount}`);
                             if (tipAmount == '10' || tipAmount == '20' || tipAmount == '30') {
                                 console.log('Each person owes a $' + (splitBill * (tipAmount / 100)).toFixed(2) + ' tip each or one person owes $' + (totalBill * (tipAmount / 100)).toFixed(2) + ' total tip.');
-                            } else { console.log('Stop wasting our time>') };
+                            } else { console.log('Stop wasting our time.') };
                             
                         });
 
@@ -60,7 +60,7 @@ rl.question('Is the check to be split (yes/no)) ', (answer1) => {
                         console.log(`Received: ${tipAmount}`);
                         if (tipAmount == '10' || tipAmount == '20' || tipAmount == '30') {
                             console.log('You owe $' + (totalBill * (tipAmount / 100)).toFixed(2) + ' in tip.');
-                        } else { console.log('Stop wasting our time>') };
+                        } else { console.log('Stop wasting our time.') };
                     });
 
                 } else if (response.toLowerCase() == 'no' || response.toLowerCase() == 'n') {
