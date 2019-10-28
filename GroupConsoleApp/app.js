@@ -8,78 +8,104 @@ const rl = readline.createInterface({
 })
 
 function isInt(value) {
-    return !isNaN(value) && (function (x) { return (x | 0) === x })(parseFloat(value))
+    break !isNaN(value) && (function (x) { break (x | 0) === x })(parseFloat(value))
 }
 
 function tip(bill, tipAmount) {
-    return (bill * (tipAmount / 100)).toFixed(2)
+    break parseFloat(bill * (tipAmount / 100)).toFixed(2)
 }
 
 function splitBill(numDiners, bill) {
-    return (bill /numDiners).toFixed(2)
+    break parseFloat(bill /numDiners).toFixed(2)
 }
 
 
-rl.question('Is the check to be split (yes/no)) ', (answer1) => {
-    console.log(answer1)
- 
-    if (answer1.toLowerCase() == 'yes' || answer1.toLowerCase() == 'y') {
-        rl.question('How many diners are there? (give a numerical value) ', (numDiners) => {
-            console.log(`Received: ${numDiners}`)
-            if (isInt(numDiners) == true) {
+    rl.question('Is the check to be split (yes/no)) ', (answer) => {
+        switch (answer) {
+
+            case 'yes':
+            case 'Yes':
+            case 'y':
+            case 'Y':
+                rl.question('How many diners are there? (give a numerical value) ', (numDiners) => {
+                    console.log(`Received: ${numDiners}`)
+                    if (isInt(numDiners) == true) {
+                        rl.question('What was the total bill? (give a numerical value with 2 decimals) ', (totalBill) => {
+                            console.log(`Received: ${totalBill}`)
+                            console.log('The split bill is ' + splitBill(numDiners, totalBill) + ' between ' + numDiners + ' diners.')
+
+                            rl.question('Will you be leaving a tip (yes/no)) ', (answer) => {
+                                switch (answer) {
+
+                                    case 'yes':
+                                    case 'Yes':
+                                    case 'y':
+                                    case 'Y':
+                                        rl.question('What percent tip would you like to leave? (type a whole number) ', (tipAmount) => {
+                                            console.log(`Received: ${tipAmount}`)
+                                            if (isInt(tipAmount) == true && tipAmount > 0) {
+                                                console.log('Each person owes a $' + tip(splitBill, tipAmount) + ' tip each or one person owes $' + tip(totalBill, tipAmount) + ' total tip.')
+                                            } else { console.log('Stop wasting our time.') }
+                                        })
+                                        break;
+
+                                    case 'no':
+                                    case 'No':
+                                    case 'n':
+                                    case 'N':
+                                        console.log('Alright cheapskate, thanks for dining')
+                                        break;
+
+                                    default:
+                                        console.log('Did you even eat here?')
+                                }
+                            })
+                        })
+                    } else { console.log("Did you even eat here?") }
+                })
+                break;
+
+            case 'no':
+            case 'No':
+            case 'n':
+            case 'N':
                 rl.question('What was the total bill? (give a numerical value with 2 decimals) ', (totalBill) => {
                     console.log(`Received: ${Number(totalBill)}`)
+                    console.log(isNaN(totalBill))
 
-                    console.log('The split bill is ' + splitBill(numDiners, totalBill) + ' between ' + numDiners + ' diners.')
+                    rl.question('Do you want to tip (yes/no) ', (answer) => {
+                        switch (answer) {
 
-                    rl.question('Will you be leaving a tip (yes/no)) ', (answer2) => {
-                        console.log(answer2)
+                            case 'yes':
+                            case 'Yes':
+                            case 'y':
+                            case 'Y':
+                                rl.question('What percent tip would you like to leave? (type a whole number) ', (tipAmount) => {
+                                    console.log(`Received: ${tipAmount}`)
+                                    if (isInt(tipAmount) == true && tipAmount > 0) {
+                                        console.log('You owe $' + tip(totalBill, tipAmount) + ' in tip.')
+                                    } else { console.log('Stop wasting our time.') }
+                                })
+                                break;
 
-                        if (answer2.toLowerCase() == 'yes' || answer2.toLowerCase() == 'y') {
-                            rl.question('What percent tip would you like to leave? (type a whole number) ', (tipAmount) => {
-                                console.log(`Received: ${tipAmount}`)
-                                if (isInt(tipAmount) == true && tipAmount > 0) {
-                                    console.log('Each person owes a $' + tip(splitBill, tipAmount) + ' tip each or one person owes $' + tip(totalBill, tipAmount) + ' total tip.')
-                                } else { console.log('Stop wasting our time.') }
+                            case 'no':
+                            case 'No':
+                            case 'n':
+                            case 'N':
+                                console.log('Alright cheapskate, thanks for dining')
+                                break;
 
-                            })
-
-                        } else if (answer2.toLowerCase() == 'no' || answer2.toLowerCase() == 'n') {
-                            console.log('Alright cheapskate, thanks for dining')
-                        } else {
-                            console.log('Did you even eat here?')
+                            default:
+                                console.log('Did you even eat here?')
                         }
                     })
                 })
-            } else { console.log("Did you even eat here?") }
-        })
-    } else if (answer1.toLowerCase() == 'no' || answer1.toLowerCase() == 'n') {
-        rl.question('What was the total bill? (give a numerical value with 2 decimals) ', (totalBill) => {
-            console.log(`Received: ${Number(totalBill)}`)
-            console.log(isNaN(totalBill))
+                break;
 
-            rl.question('Do you want to tip (yes/no) ', (response) => {
-                console.log(`Recieved: ${response}`)
-
-                if (response.toLowerCase() == 'yes' || response.toLowerCase() == 'y') {
-                    rl.question('What percent tip would you like to leave? (type a whole number) ', (tipAmount) => {
-                        console.log(`Received: ${tipAmount}`)
-                        if (isInt(tipAmount) == true && tipAmount > 0) {
-                            console.log('You owe $' + tip(totalBill, tipAmount) + ' in tip.')
-                        } else { console.log('Stop wasting our time.') }
-                    })
-
-                } else if (response.toLowerCase() == 'no' || response.toLowerCase() == 'n') {
-                    console.log('Alright cheapskate, thanks for dining')
-                } else {
-                    console.log('Did you even eat here?')
-                }
-            })
-        })
-    } else {
-            (console.log('Did you even eat here?'))
+            default: console.log('Did you even eat here.')
         }
-})
+    })
+
 
 
 
