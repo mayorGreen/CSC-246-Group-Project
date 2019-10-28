@@ -8,17 +8,16 @@ const rl = readline.createInterface({
 })
 
 function isInt(value) {
-    break !isNaN(value) && (function (x) { break (x | 0) === x })(parseFloat(value))
+    return !isNaN(value) && (function (x) { return (x | 0) === x })(parseFloat(value))
 }
 
 function tip(bill, tipAmount) {
-    break parseFloat(bill * (tipAmount / 100)).toFixed(2)
+    return (bill * (tipAmount / 100)).toFixed(2)
 }
 
 function splitBill(numDiners, bill) {
-    break parseFloat(bill /numDiners).toFixed(2)
+    return (bill /numDiners).toFixed(2)
 }
-
 
     rl.question('Is the check to be split (yes/no)) ', (answer) => {
         switch (answer) {
@@ -48,6 +47,7 @@ function splitBill(numDiners, bill) {
                                             } else { console.log('Stop wasting our time.') }
                                         })
                                         break;
+                                        return process.exit(0)
 
                                     case 'no':
                                     case 'No':
@@ -55,13 +55,20 @@ function splitBill(numDiners, bill) {
                                     case 'N':
                                         console.log('Alright cheapskate, thanks for dining')
                                         break;
+                                        return process.exit(0)
 
                                     default:
                                         console.log('Did you even eat here?')
+                                        return process.exit(1)
+                                        
                                 }
                             })
                         })
-                    } else { console.log("Did you even eat here?") }
+                    } else {
+                        console.log("Did you even eat here?")
+                        return process.exit(1)
+                        
+                    }
                 })
                 break;
 
@@ -70,7 +77,7 @@ function splitBill(numDiners, bill) {
             case 'n':
             case 'N':
                 rl.question('What was the total bill? (give a numerical value with 2 decimals) ', (totalBill) => {
-                    console.log(`Received: ${Number(totalBill)}`)
+                    console.log(`Received: ${totalBill}`)
                     console.log(isNaN(totalBill))
 
                     rl.question('Do you want to tip (yes/no) ', (answer) => {
@@ -87,6 +94,7 @@ function splitBill(numDiners, bill) {
                                     } else { console.log('Stop wasting our time.') }
                                 })
                                 break;
+                                return process.exit(0)
 
                             case 'no':
                             case 'No':
@@ -94,18 +102,19 @@ function splitBill(numDiners, bill) {
                             case 'N':
                                 console.log('Alright cheapskate, thanks for dining')
                                 break;
+                            return process.exit(0)
 
                             default:
                                 console.log('Did you even eat here?')
+                                return process.exit(1)                                
                         }
                     })
                 })
                 break;
 
-            default: console.log('Did you even eat here.')
+            default:
+                console.log('Did you even eat here.')
+                return process.exit(1)
+                
         }
     })
-
-
-
-
