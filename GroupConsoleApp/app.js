@@ -18,7 +18,7 @@ function tip(bill, tipAmount) {
 function splitBill(numDiners, bill) {
     return (bill /numDiners).toFixed(2)
 }
-    console.log('Type exit to quit')
+    console.log('Type exit or press control C to quit')
     rl.question('Is the check to be split (yes/no)) ', (answer) => {
         switch (answer) {
 
@@ -28,6 +28,7 @@ function splitBill(numDiners, bill) {
             case 'Y':
                 rl.question('How many diners are there? (give a numerical value) ', (numDiners) => {
                     console.log(`Received: ${numDiners}`)
+                    
                     if (isInt(numDiners) == true) {
                         rl.question('What was the total bill? (give a numerical value with 2 decimals) ', (totalBill) => {
                             console.log(`Received: ${totalBill}`)
@@ -43,19 +44,25 @@ function splitBill(numDiners, bill) {
                                         rl.question('What percent tip would you like to leave? (type a whole number) ', (tipAmount) => {
                                             console.log(`Received: ${tipAmount}`)
                                             if (isInt(tipAmount) == true && tipAmount > 0) {
-                                                console.log('Each person owes a $' + tip(splitBill, tipAmount) + ' tip each or one person owes $' + tip(totalBill, tipAmount) + ' total tip.')
-                                            } else { console.log('Stop wasting our time.') }
+                                                console.log('Each person owes a $' + tip(splitBill(numDiners, totalBill), tipAmount) + ' tip each or one person owes $' + tip(totalBill, tipAmount) + ' total tip.')
+                                                return process.exit(1)
+                                            } else {
+                                                console.log('Stop wasting our time.')
+                                                return process.exit(1)
+                                            }
                                         })
-                                        break;
-                                        return process.exit(0)
+                                        break
 
                                     case 'no':
                                     case 'No':
                                     case 'n':
                                     case 'N':
                                         console.log('Alright cheapskate, thanks for dining')
-                                        break;
-                                        return process.exit(0)
+                                        return process.exit(1)
+
+                                    case 'exit':
+                                    case 'Exit':
+                                        return process.exit(1)
 
                                     default:
                                         console.log('Did you even eat here?')
@@ -70,7 +77,7 @@ function splitBill(numDiners, bill) {
 
                     }
                 })
-                break;
+                break
 
             case 'no':
             case 'No':
@@ -91,22 +98,29 @@ function splitBill(numDiners, bill) {
                                     console.log(`Received: ${tipAmount}`)
                                     if (isInt(tipAmount) == true && tipAmount > 0) {
                                         console.log('You owe $' + tip(totalBill, tipAmount) + ' in tip.')
-                                    } else { console.log('Stop wasting our time.') }
+                                        return process.exit(1)
+                                    } else {
+                                        console.log('Stop wasting our time.')
+                                        return process.exit(1)
+                                    }
                                 })
-                                break;
-                                return process.exit(0)
-
+                                break
+                                
                             case 'no':
                             case 'No':
                             case 'n':
                             case 'N':
                                 console.log('Alright cheapskate, thanks for dining')
-                                break;
-                                return process.exit(0)
+                                return process.exit(1)
+
+                            case 'exit':
+                            case 'Exit':
+                                return process.exit(1)
 
                             default:
                                 console.log('Did you even eat here?')
-                                return process.exit(1)
+                                break
+                                //return process.exit(1)
                         }
                     })
                 })
@@ -114,7 +128,7 @@ function splitBill(numDiners, bill) {
 
             case 'exit':
             case 'Exit':
-                return process.exit(0)
+                return process.exit(1)
 
             default:
                 console.log('Did you even eat here.')
