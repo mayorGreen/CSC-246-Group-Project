@@ -18,7 +18,7 @@ function tip(bill, tipAmount) {
 function splitBill(numDiners, bill) {
     return (bill /numDiners).toFixed(2)
 }
-
+    console.log('Type exit to quit')
     rl.question('Is the check to be split (yes/no)) ', (answer) => {
         switch (answer) {
 
@@ -59,15 +59,15 @@ function splitBill(numDiners, bill) {
 
                                     default:
                                         console.log('Did you even eat here?')
-                                        return process.exit(1)
-                                        
+                                        return 1
+
                                 }
                             })
                         })
                     } else {
                         console.log("Did you even eat here?")
                         return process.exit(1)
-                        
+
                     }
                 })
                 break;
@@ -102,19 +102,23 @@ function splitBill(numDiners, bill) {
                             case 'N':
                                 console.log('Alright cheapskate, thanks for dining')
                                 break;
-                            return process.exit(0)
+                                return process.exit(0)
 
                             default:
                                 console.log('Did you even eat here?')
-                                return process.exit(1)                                
+                                return process.exit(1)
                         }
                     })
                 })
                 break;
 
+            case 'exit':
+            case 'Exit':
+                return process.exit(0)
+
             default:
                 console.log('Did you even eat here.')
                 return process.exit(1)
-                
+
         }
     })
