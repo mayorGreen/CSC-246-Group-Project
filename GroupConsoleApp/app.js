@@ -120,7 +120,7 @@ function splitBill(numDiners, bill) {
                             default:
                                 console.log('Did you even eat here?')
                                 break
-                                //return process.exit(1)
+                                return process.exit(1)
                         }
                     })
                 })
