@@ -44,7 +44,7 @@ function tipAmount(totalBill) {
         if (isInt(tipAmount) == true && tipAmount > 0) {
             console.log('You owe $' + tipCalculate(totalBill, tipAmount) + ' in tip.')
             return process.exit(1)
-        } else {mistakeCall()}
+        } else mistakeCall()
     })
 }
 
@@ -78,7 +78,7 @@ rl.question('What Fuction Do you want\n1: Check Splitter\n2: Interest Calculator
                                                         if (isInt(tipAmount) == true && tipAmount > 0) {
                                                             console.log('Each person owes a $' + tipCalculate(splitBill(numDiners, totalBill), tipAmount) + ' tip each or one person owes $' + tipCalculate(totalBill, tipAmount) + ' total tip.')
                                                             return process.exit(1)
-                                                        } else { mistakeCall() }
+                                                        } else mistakeCall()
                                                     })
                                                     break
                                                 case 'no':
@@ -88,9 +88,9 @@ rl.question('What Fuction Do you want\n1: Check Splitter\n2: Interest Calculator
                                                 default: mistakeCall()
                                             }
                                         })
-                                    } else { mistakeCall() }
+                                    } else mistakeCall()
                                 })
-                            } else { mistakeCall() }
+                            } else mistakeCall()
                         })
                         break
 
@@ -117,7 +117,7 @@ rl.question('What Fuction Do you want\n1: Check Splitter\n2: Interest Calculator
                                             mistakeCall()
                                     }
                                 })
-                            } else { mistakeCall() }
+                            } else mistakeCall()
                         })
                         break;
 
