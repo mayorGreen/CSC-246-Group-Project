@@ -1,3 +1,7 @@
+let Simple = require("./SimpleInterest.js");
+let Compound = require("./Compound interest.js");
+
+
 const readline = require('readline');
 const rl = readline.createInterface({
     input: process.stdin,
@@ -20,9 +24,6 @@ function tip(bill, tipAmount) {
       "\nThe tip will cost you an extra $" + ((Tip/100)*bill).toFixed(2)+
       "\nThe total after the tip is $"+((Bill * (Tip / 100))+Bill).toFixed(2))
 
-
-    //let endBill = bill +(bill*(tipAmount/100));
-   //console.log("Total bill after leaving a tip is:\n$"+ endBill);
 }
 
 //A Function that splits the total amount of the bill, by the number of diners.
@@ -31,10 +32,9 @@ function splitBill(numDiners, bill) {
 }
 
 function invalid() {
-    console.log("\nIt seems as if you entered an invalid character\n" +
+    console.log("\nInvalid Input\n" +
         "Please try Again!");
 }
-
 function CheckSplit() {
     rl.question('Will You Be Splitting The Check? (yes/no) \n ', (answer) => {
         switch (answer) {
@@ -105,7 +105,7 @@ function question3Yes() {
                 console.log('Alright If Everyone Is Sharing, The Total Cost Per Person Would Be: $' +
                     tip(splitBill(numDiners, totalBill), tipAmount) + ' Otherwise, A Single Person Owes: $' +
                     tip(totalBill, tipAmount) + ' For A Tip.');
-                exit();
+                H
             } else {
                 invalid();
                 question3Yes();
@@ -176,7 +176,7 @@ function NoTipNoSplit(totalBill) {
 
 module.exports = {
    CheckSplit,
-    TipNoSplit,
+   // TipNoSplit,
 
 
 };
