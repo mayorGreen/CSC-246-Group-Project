@@ -1,4 +1,3 @@
-
 const readline = require('readline');
 const rl = readline.createInterface({
     input: process.stdin,
@@ -12,6 +11,7 @@ function processLoan(PR,IN,PY) {
     let A = PR*(1+(Interest*PY));
     console.log("The Ammount of interest is: $",(A-PR).toFixed(2));
     console.log('The Estimated Amount After interest Is: $', A.toFixed(2));
+    exit();
 }
 
 function principle() {

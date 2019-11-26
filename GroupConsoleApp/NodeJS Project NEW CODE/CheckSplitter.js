@@ -1,7 +1,3 @@
-let Simple = require("./SimpleInterest.js");
-let Compound = require("./Compound interest.js");
-
-
 const readline = require('readline');
 const rl = readline.createInterface({
     input: process.stdin,
@@ -18,11 +14,13 @@ function exit() {
 
 //A Function that Calculates the Tip, by taking the Total Bill and dividing it by the percent to be tipped.
 function tip(bill, tipAmount) {
-    var Bill = parseFloat(bill);
-    var Tip = parseFloat(tipAmount);
-  console.log("\nThe Tip ammount is "+Tip+"%"+
-      "\nThe tip will cost you an extra $" + ((Tip/100)*bill).toFixed(2)+
-      "\nThe total after the tip is $"+((Bill * (Tip / 100))+Bill).toFixed(2))
+    const Bill = parseFloat(bill);
+    const Tip = parseFloat(tipAmount);
+    console.log("\nThe Tip ammount is "+Tip+"%");
+    const tipNaked = ((Tip/100)*bill).toFixed(2);
+    console.log("\nThe tip will cost you an extra $" + tipNaked);
+    console.log("\nThe total after the tip is $"+((Bill * (Tip/100))+Bill).toFixed(2));
+    return tipNaked;
 
 }
 
@@ -31,10 +29,13 @@ function splitBill(numDiners, bill) {
     return (bill /numDiners).toFixed(2);
 }
 
+// This is basically a function that saves having to type out an input error print for everything
 function invalid() {
     console.log("\nInvalid Input\n" +
         "Please try Again!");
 }
+
+// A Function that asks if the check is to be split and uses that to move on to the next question
 function CheckSplit() {
     rl.question('Will You Be Splitting The Check? (yes/no) \n ', (answer) => {
         switch (answer) {
@@ -51,6 +52,7 @@ function CheckSplit() {
         }
     })
 }
+//Question1 polls how many people the check needs to be split by and send it to question2
 function question1() {
         rl.question('How Many Patrons Were There? (Please provide a whole number) ', (numDiners) => {
             if (isNaN(numDiners) === false && numDiners > 0) {
@@ -62,6 +64,8 @@ function question1() {
             }
         })
 }
+
+//Question2 polls total ammount due and sends that and the number of diners to question3
 function question2(numDiners) {
     rl.question('What Is The Total Amount Due? (Please Enter A Number Using Two Decimal Places)\n ', (totalBill) => {
         console.log(`Alright, The Total Amount Received Is: $${totalBill}\n`);
@@ -69,14 +73,17 @@ function question2(numDiners) {
         else question2(numDiners);
     })
 }
+
+//Question3 polls if a tip will be left
 function question3(numDiners,totalBill) {
     if (isNaN(numDiners) === false) {
-        console.log('So Far An Even Split Would Be $' + splitBill(numDiners, parseFloat(totalBill)) + ' Between ' + numDiners + ' Patrons.\n');
+        let split =parseFloat(splitBill(numDiners, parseFloat(totalBill)));
+        console.log('So Far An Even Split Would Be $' + split + ' Between ' + numDiners + ' Patrons.\n');
         rl.question('Will You Be Leaving Your Server A Tip? (yes/no)) \n', (answer) => {
             switch (answer) {
                 case 'yes':
                 case 'Yes':
-                    question3Yes();
+                    question3Yes(numDiners,totalBill,split);
                     break;
 
                 case 'no':
@@ -94,18 +101,23 @@ function question3(numDiners,totalBill) {
             }
         })
     } else {
-        console.log("Something isnt right with the numbers you inserted please try again");
+        console.log("Something isn't right with the numbers you inserted please try again");
         question1();
     }
 }
-function question3Yes() {
-    rl.question('What Percent Tip Would You Like To Leave? (Please Enter A Whole Number) ', (tipAmount) => {
+//Sub Function of question3 that polls for tip ammount and sends the info out to be calculated
+function question3Yes(numdiners,totalbill,split) {
+    rl.question('What Percent Tip Would You Like To Leave?(Example: 5.5)', (tipAmount) => {
         console.log(`Received: ${tipAmount}`);
-            if (isInt(tipAmount) === true && tipAmount > 0) {
-                console.log('Alright If Everyone Is Sharing, The Total Cost Per Person Would Be: $' +
-                    tip(splitBill(numDiners, totalBill), tipAmount) + ' Otherwise, A Single Person Owes: $' +
-                    tip(totalBill, tipAmount) + ' For A Tip.');
-                H
+        let tipAMT = parseFloat(tipAmount);
+            if (isNaN(tipAMT) === false && tipAMT > 0) {
+                let tipNaked = parseFloat(tip(totalbill,tipAMT));
+                let tipsplit =tipNaked/numdiners;
+                let splitTipsplit = (split+tipsplit);
+                console.log("Alright If Everyone Is Sharing, The Total Cost Per Person Would Be: $"+
+                    splitTipsplit.toFixed(2));
+                exit();
+
             } else {
                 invalid();
                 question3Yes();
@@ -177,6 +189,4 @@ function NoTipNoSplit(totalBill) {
 module.exports = {
    CheckSplit,
    // TipNoSplit,
-
-
 };

@@ -3,12 +3,13 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-function compoundinterest(p,r,m,t){
-    var rate = r/100;
-    var rOVERm = rate/m;
-    var mTIMESt = m*t;
-    var end = p*(Math.pow(1+rOVERm,mTIMESt));
-    console.log("The Total ammount after interest is $"+end.toFixed(2))
+function compounder(p,r,m,t){
+    const rate = r / 100;
+    const rOVERm = rate / m;
+    const mTIMESt = m * t;
+    const end = p * (Math.pow(1 + rOVERm, mTIMESt));
+    console.log("The Total ammount after interest is $"+end.toFixed(2));
+    exit();
 }
 function exit() {return process.exit(1);}
 function invalid() {console.log("\nInvalid Input\nPlease try Again!");}
@@ -53,9 +54,8 @@ function compounded(PR,RT) {
 function time(PR,RT,M) {
     rl.question('\nWhat is the ammount of years of the loan', function (T_old) {
         let T = parseInt(T_old);
-        compoundinterest(PR, RT, M, T);
+        compounder(PR, RT, M, T);
         rl.close();
-        exit();
     });
 }
 
