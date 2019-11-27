@@ -9,7 +9,7 @@ function invalid() {console.log("\nInvalid Input\nPlease try Again!");}
 function processLoan(PR,IN,PY) {
     let Interest = IN / 100;
     let A = PR*(1+(Interest*PY));
-    console.log("The Ammount of interest is: $",(A-PR).toFixed(2));
+    console.log("The Amount of interest is: $",(A-PR).toFixed(2));
     console.log('The Estimated Amount After interest Is: $', A.toFixed(2));
     exit();
 }

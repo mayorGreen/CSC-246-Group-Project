@@ -8,7 +8,7 @@ function compounder(p,r,m,t){
     const rOVERm = rate / m;
     const mTIMESt = m * t;
     const end = p * (Math.pow(1 + rOVERm, mTIMESt));
-    console.log("The Total ammount after interest is $"+end.toFixed(2));
+    console.log("The Total amount after interest is $"+end.toFixed(2));
     exit();
 }
 function exit() {return process.exit(1);}
@@ -52,7 +52,7 @@ function compounded(PR,RT) {
 }
 
 function time(PR,RT,M) {
-    rl.question('\nWhat is the ammount of years of the loan', function (T_old) {
+    rl.question('\nWhat is the amount of years of the loan', function (T_old) {
         let T = parseInt(T_old);
         compounder(PR, RT, M, T);
         rl.close();
