@@ -65,7 +65,8 @@ function CheckSplit() {
 //A Function Used To Ask The User How Many Patrons There Were, This Sends The Response To Question 2 For It To Process
 function question1() {
     rl.question('How Many Patrons Were There? (Please provide a whole number) ', (numDiners) => {
-        if (isNaN(numDiners) === false && numDiners > 0) {
+        let numdinersInt = parseInt(numDiners);
+        if (isNaN(numdinersInt) === false && numDiners > 0) {
             console.log(`Got it, There Were ${numDiners} Patron(s)\n`);
             question2(numDiners)
         } else {
@@ -78,7 +79,8 @@ function question1() {
 //A Function that asks for the total amount due, and sends that information combined with the number of patrons to Question 3
 function question2(numDiners) {
     rl.question('What Is The Total Amount Due? (Please Enter A Number Using Two Decimal Places)\n', (totalBill) => {
-        if (isNaN(totalBill) === false && totalBill > 0) {
+        let totalBillFloat = parseFloat(totalBill);
+        if (isNaN(totalBillFloat) === false && totalBill > 0) {
             console.log(`Alright, The Total Amount Due Is: $${totalBill}\n`);
             question3(numDiners,totalBill)}
         else {
@@ -148,7 +150,8 @@ function question3No(numDiners,totalBill) {
 //A Function that fires if the bill isn't in fact being split
 function question2NoSplit(){
     rl.question('What Is The Total Amount Due? (Please Enter A Number Using Two Decimal Places)\n ', (totalBill) => {
-        if (isNaN(totalBill) === false && totalBill > 0) {
+         const totalBillFloat = parseFloat(totalBill);
+        if (isNaN(totalBillFloat) === false && totalBillFloat > 0) {
             console.log(`Alright, The Total Amount Due Is: $${totalBill}\n`);
             question3NoSplit(totalBill)
         }
