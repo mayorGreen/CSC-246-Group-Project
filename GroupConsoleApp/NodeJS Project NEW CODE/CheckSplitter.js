@@ -24,10 +24,11 @@ function exit() {
 function tip(bill, tipAmount) {
     const Bill = parseFloat(bill);
     const Tip = parseFloat(tipAmount);
-    console.log("\nAlright, You're Leaving A Tip Of:  "+Tip+"%");
+    console.log("\nAlright, You're Leaving A Tip Of: "+Tip+"%");
     const tipNaked = ((Tip/100)*bill).toFixed(2);
     console.log("\nThe tip will cost you an extra $" + tipNaked);
     console.log("\nThe total after the tip is $"+((Bill * (Tip/100))+Bill).toFixed(2));
+    console.log("\nWe Hope You Enjoy Your Meal!\n");
     return tipNaked;
 
 }
@@ -65,7 +66,7 @@ function CheckSplit() {
 function question1() {
         rl.question('How Many Patrons Were There? (Please provide a whole number) ', (numDiners) => {
             if (isNaN(numDiners) === false && numDiners > 0) {
-                console.log(`Got it, There Was ${numDiners} Patron(s)\n`);
+                console.log(`Got it, There Were ${numDiners} Patron(s)\n`);
                 question2(numDiners)
             } else {
                 invalid();
@@ -129,7 +130,7 @@ function question3Yes(numdiners,totalbill,split) {
                 let splitTipsplit = (split+tipsplit);
                 console.log("\nAlright If Everyone Is Sharing, The Total Cost Per Person Would Be: $"+
                     splitTipsplit.toFixed(2));
-                console.log("\n We Hope You Enjoyed Your Visit! \n");
+                console.log("\nWe Hope You Enjoyed Your Visit! \n");
                 exit();
 
             } else {
@@ -139,9 +140,9 @@ function question3Yes(numdiners,totalbill,split) {
     })
 }
 
-//A function that scolds the user if they don't leave a tip. SINCE THEY SHOULD BE!
+//A function For Users That Choose To Leave No Tip
 function question3No(numDiners,totalBill) {
-    console.log("That Isn't Very Nice Of You. Your Total Bill Is: $" + splitBill(numDiners, parseFloat(totalBill)) + ' Per Person \n');
+    console.log("Very Well Then.. Your Total Bill Is: $" + splitBill(numDiners, parseFloat(totalBill)) + ' Per Person \n');
     exit();
 }
 //A Function that fires if the bill isn't in fact being split
@@ -196,12 +197,13 @@ function TipNoSplit(totalBill) {
         }
     })
 }
-//A Function to Scold the user if they're not splitting the bill AND not tipping. AKA being awful humans
+//A Function To Print A Response To A User Who Chooses Not To Split The Bill, Or Leave A Tip
 function NoTipNoSplit(totalBill) {
-    console.log("That Isn't Very Nice Of You. Your Total Bill Is: $" + totalBill);
+    console.log("Very Well Then.. Your Total Bill Is: $" + totalBill);
     exit();
 }
 
+//Exporting the module
 module.exports = {
    CheckSplit,
 };
