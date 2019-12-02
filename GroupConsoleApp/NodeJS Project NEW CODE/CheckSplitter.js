@@ -62,6 +62,7 @@ function CheckSplit() {
         }
     })
 }
+
 //A Function Used To Ask The User How Many Patrons There Were, This Sends The Response To Question 2 For It To Process
 function question1() {
     rl.question('How Many Patrons Were There? (Please provide a whole number) ', (numDiners) => {
@@ -122,6 +123,7 @@ function question3(numDiners,totalBill) {
         question1();
     }
 }
+
 //A Function Following Question3 That asks the amount of tip and passes that information to be calculated
 function question3Yes(numdiners,totalbill,split) {
     rl.question('What Percent Tip Would You Like To Leave?(Example: 5.5)', (tipAmount) => {
@@ -147,6 +149,7 @@ function question3No(numDiners,totalBill) {
     console.log("Very Well Then.. Your Total Bill Is: $" + splitBill(numDiners, parseFloat(totalBill)) + ' Per Person \n');
     exit();
 }
+
 //A Function that fires if the bill isn't in fact being split
 function question2NoSplit(){
     rl.question('What Is The Total Amount Due? (Please Enter A Number Using Two Decimal Places)\n ', (totalBill) => {
@@ -161,6 +164,7 @@ function question2NoSplit(){
         }
     })
 }
+
 //A Function to calculate a non split bills tip
 function question3NoSplit(totalBill){
     rl.question('Will You Be Leaving Your Server A Tip? (yes/no)) \n', (tip) => {
@@ -200,6 +204,7 @@ function TipNoSplit(totalBill) {
         }
     })
 }
+
 //A Function To Print A Response To A User Who Chooses Not To Split The Bill, Or Leave A Tip
 function NoTipNoSplit(totalBill) {
     console.log("Very Well Then.. Your Total Bill Is: $" + totalBill);
