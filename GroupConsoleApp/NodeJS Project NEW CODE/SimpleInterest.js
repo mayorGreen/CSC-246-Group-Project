@@ -1,6 +1,7 @@
 /*
 Simple interest is the portion of the program that calculates the simple interest on a loan.
  */
+
 //Variables used to capture user inputs.
 const readline = require('readline');
 const rl = readline.createInterface({
