@@ -130,7 +130,7 @@ function question3Yes(numdiners,totalbill,split) {
             let tipNaked = parseFloat(tip(totalbill,tipAMT));
             let tipsplit =tipNaked/numdiners;
             let splitTipsplit = (split+tipsplit);
-            console.log("\nAlright If Everyone Is Sharing, The Total Cost Per Person Would Be: $"+
+            console.log("\nAlright If Everyone Is Sharing, Including The Tip, The Total Cost Per Person Would Be: $"+
                 splitTipsplit.toFixed(2));
             console.log("\nWe Hope You Enjoyed Your Visit! \n");
             exit();
