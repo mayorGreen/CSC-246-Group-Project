@@ -28,7 +28,6 @@ function tip(bill, tipAmount) {
     const tipNaked = ((Tip/100)*bill).toFixed(2);
     console.log("\nThe tip will cost you an extra $" + tipNaked);
     console.log("\nThe total after the tip is $"+((Bill * (Tip/100))+Bill).toFixed(2));
-    console.log("\nWe Hope You Enjoy Your Meal!\n");
     return tipNaked;
 
 }
@@ -134,7 +133,6 @@ function question3Yes(numdiners,totalbill,split) {
             let splitTipsplit = (split+tipsplit);
             console.log("\nAlright If Everyone Is Sharing, Including The Tip, The Total Cost Per Person Would Be: $"+
                 splitTipsplit.toFixed(2));
-            console.log("\nWe Hope You Enjoyed Your Visit! \n");
             exit();
 
         } else {
