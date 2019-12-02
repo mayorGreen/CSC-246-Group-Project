@@ -25,6 +25,8 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+
+//Starting the program by calling the main Function.
 main();
 
 //The Main Function, asking users which calculator they'd like to use, and calling that function.
