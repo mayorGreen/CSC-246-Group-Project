@@ -34,22 +34,22 @@ function main() {
         '\nPress 2 To Calculate Simple Interest\n'+
         '\nPress 3 To Calculate Compound Interest',
         (CalcChoose) => {
-        switch (CalcChoose) {
-            case '1':
-                console.log("\nLoading Tip Calculator / Check Splitter \n");
-                Check.CheckSplit();
-                break;
-            case '2':
-                console.log("\nLoading Simple Interest Calculator\n");
-                Simple.principle();
-                break;
-            case'3':
-                console.log("\nLoading Compound Interest Calculator\n");
-                Compound.principle();
-                break;
-            default:
-                console.log("\nYou've Entered An Invalid Response. Please Try Again\n");
-                main();
-        }
-    });
+            switch (CalcChoose) {
+                case '1':
+                    console.log("\nLoading Tip Calculator / Check Splitter \n");
+                    Check.CheckSplit();
+                    break;
+                case '2':
+                    console.log("\nLoading Simple Interest Calculator\n");
+                    Simple.principle();
+                    break;
+                case'3':
+                    console.log("\nLoading Compound Interest Calculator\n");
+                    Compound.principle();
+                    break;
+                default:
+                    console.log("\nYou've Entered An Invalid Response. Please Try Again\n");
+                    main();
+            }
+        });
 }

@@ -58,27 +58,30 @@ function CheckSplit() {
             default:
                 invalid();
                 CheckSplit();
-               break
+                break
         }
     })
 }
+
 //A Function Used To Ask The User How Many Patrons There Were, This Sends The Response To Question 2 For It To Process
 function question1() {
-        rl.question('How Many Patrons Were There? (Please provide a whole number) ', (numDiners) => {
-            if (isNaN(numDiners) === false && numDiners > 0) {
-                console.log(`Got it, There Were ${numDiners} Patron(s)\n`);
-                question2(numDiners)
-            } else {
-                invalid();
-                question1();
-            }
-        })
+    rl.question('How Many Patrons Were There? (Please provide a whole number) ', (numDiners) => {
+        let numdinersInt = parseInt(numDiners);
+        if (isNaN(numdinersInt) === false && numDiners > 0) {
+            console.log(`Got it, There Were ${numDiners} Patron(s)\n`);
+            question2(numDiners)
+        } else {
+            invalid();
+            question1();
+        }
+    })
 }
 
 //A Function that asks for the total amount due, and sends that information combined with the number of patrons to Question 3
 function question2(numDiners) {
     rl.question('What Is The Total Amount Due? (Please Enter A Number Using Two Decimal Places)\n', (totalBill) => {
-        if (isNaN(totalBill) === false && totalBill > 0) {
+        let totalBillFloat = parseFloat(totalBill);
+        if (isNaN(totalBillFloat) === false && totalBill > 0) {
             console.log(`Alright, The Total Amount Due Is: $${totalBill}\n`);
             question3(numDiners,totalBill)}
         else {
@@ -120,23 +123,24 @@ function question3(numDiners,totalBill) {
         question1();
     }
 }
+
 //A Function Following Question3 That asks the amount of tip and passes that information to be calculated
 function question3Yes(numdiners,totalbill,split) {
     rl.question('What Percent Tip Would You Like To Leave?(Example: 5.5)', (tipAmount) => {
         let tipAMT = parseFloat(tipAmount);
-            if (isNaN(tipAMT) === false && tipAMT > 0) {
-                let tipNaked = parseFloat(tip(totalbill,tipAMT));
-                let tipsplit =tipNaked/numdiners;
-                let splitTipsplit = (split+tipsplit);
-                console.log("\nAlright If Everyone Is Sharing, The Total Cost Per Person Would Be: $"+
-                    splitTipsplit.toFixed(2));
-                console.log("\nWe Hope You Enjoyed Your Visit! \n");
-                exit();
+        if (isNaN(tipAMT) === false && tipAMT > 0) {
+            let tipNaked = parseFloat(tip(totalbill,tipAMT));
+            let tipsplit =tipNaked/numdiners;
+            let splitTipsplit = (split+tipsplit);
+            console.log("\nAlright If Everyone Is Sharing, Including The Tip, The Total Cost Per Person Would Be: $"+
+                splitTipsplit.toFixed(2));
+            console.log("\nWe Hope You Enjoyed Your Visit! \n");
+            exit();
 
-            } else {
-                invalid();
-                question3Yes(numdiners,totalbill,split);
-            }
+        } else {
+            invalid();
+            question3Yes(numdiners,totalbill,split);
+        }
     })
 }
 
@@ -145,10 +149,12 @@ function question3No(numDiners,totalBill) {
     console.log("Very Well Then.. Your Total Bill Is: $" + splitBill(numDiners, parseFloat(totalBill)) + ' Per Person \n');
     exit();
 }
+
 //A Function that fires if the bill isn't in fact being split
 function question2NoSplit(){
     rl.question('What Is The Total Amount Due? (Please Enter A Number Using Two Decimal Places)\n ', (totalBill) => {
-        if (isNaN(totalBill) === false && totalBill > 0) {
+         const totalBillFloat = parseFloat(totalBill);
+        if (isNaN(totalBillFloat) === false && totalBillFloat > 0) {
             console.log(`Alright, The Total Amount Due Is: $${totalBill}\n`);
             question3NoSplit(totalBill)
         }
@@ -158,6 +164,7 @@ function question2NoSplit(){
         }
     })
 }
+
 //A Function to calculate a non split bills tip
 function question3NoSplit(totalBill){
     rl.question('Will You Be Leaving Your Server A Tip? (yes/no)) \n', (tip) => {
@@ -197,6 +204,7 @@ function TipNoSplit(totalBill) {
         }
     })
 }
+
 //A Function To Print A Response To A User Who Chooses Not To Split The Bill, Or Leave A Tip
 function NoTipNoSplit(totalBill) {
     console.log("Very Well Then.. Your Total Bill Is: $" + totalBill);
@@ -205,5 +213,5 @@ function NoTipNoSplit(totalBill) {
 
 //Exporting the module
 module.exports = {
-   CheckSplit,
+    CheckSplit,
 };

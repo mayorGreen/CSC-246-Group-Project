@@ -61,7 +61,7 @@ function payments(PR,IN){
             invalid();
             payments(PR,IN);
         }
-        });
+    });
 }
 
 //Exporting the module for its use in Main.
