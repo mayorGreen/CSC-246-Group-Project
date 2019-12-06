@@ -65,8 +65,8 @@ function CheckSplit() {
 //A Function Used To Ask The User How Many Patrons There Were, This Sends The Response To Question 2 For It To Process
 function question1() {
     rl.question('How Many Patrons Were There? (Please provide a whole number) ', (numDiners) => {
-        let numdinersInt = parseInt(numDiners);
-        if (isNaN(numdinersInt) === false && numDiners > 0) {
+        let NumberOfDinersInt = parseInt(numDiners);
+        if (isNaN(NumberOfDinersInt) === false && numDiners > 0) {
             console.log(`Got it, There Were ${numDiners} Patron(s)\n`);
             question2(numDiners)
         } else {
@@ -124,20 +124,20 @@ function question3(numDiners,totalBill) {
 }
 
 //A Function Following Question3 That asks the amount of tip and passes that information to be calculated
-function question3Yes(numdiners,totalbill,split) {
+function question3Yes(NumberOfDiners,TotalBill,split) {
     rl.question('What Percent Tip Would You Like To Leave?(Example: 5.5)', (tipAmount) => {
         let tipAMT = parseFloat(tipAmount);
         if (isNaN(tipAMT) === false && tipAMT > 0) {
-            let tipNaked = parseFloat(tip(totalbill,tipAMT));
-            let tipsplit =tipNaked/numdiners;
-            let splitTipsplit = (split+tipsplit);
+            let tipNaked = parseFloat(tip(TotalBill,tipAMT));
+            let TipSplit =tipNaked/NumberOfDiners;
+            let SplitTipSplit = (split+TipSplit);
             console.log("\nAlright If Everyone Is Sharing, Including The Tip, The Total Cost Per Person Would Be: $"+
-                splitTipsplit.toFixed(2));
+                SplitTipSplit.toFixed(2));
             exit();
 
         } else {
             invalid();
-            question3Yes(numdiners,totalbill,split);
+            question3Yes(NumberOfDiners,TotalBill,split);
         }
     })
 }

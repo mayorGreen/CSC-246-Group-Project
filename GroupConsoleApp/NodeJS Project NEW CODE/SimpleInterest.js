@@ -56,8 +56,8 @@ function payments(PR,IN){
         let PY = parseInt(PY_OLD);
         if (isNaN(PY) === false && PY > 0) {
             console.log("\nGot it, There Are: ",PY,"Monthly Payments");
-            let PYout = PY/12;
-            processLoan(PR,IN,PYout);
+            let PYOut = PY/12;
+            processLoan(PR,IN,PYOut);
         } else {
             invalid();
             payments(PR,IN);
